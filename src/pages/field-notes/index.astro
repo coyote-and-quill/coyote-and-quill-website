@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('field-notes', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<BaseLayout
+  title="Field Notes — Coyote & Quill"
+  description="Observations from the operational edge. Coyote & Quill on AI adoption, executive communications, and the discipline of building."
+>
+  <div class="page-hero">
+    <div class="container">
+      <p class="label">Field Notes</p>
+      <h1>Observations from<br />the operational edge.</h1>
+      <p>Posted Monday, Wednesday, and Friday. The work, the patterns, and the things worth saying.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      {posts.length === 0 ? (
+        <div class="placeholder-section">
+          <p class="label" style="margin-bottom: 12px;">Coming Soon</p>
+          <p>The first field note posts on day one.</p>
+        </div>
+      ) : (
+        <ul class="field-notes-list">
+          {posts.map((post) => (
+            <li class="field-note-item">
+              <a href={`/field-notes/${post.id}`}>
+                <p class="field-note-date">{formatDate(post.data.pubDate)}</p>
+                <h2>{post.data.title}</h2>
+                <p>{post.data.description}</p>
+                <span class="field-note-cta">Read →</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .field-notes-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+  }
+  .field-note-item {
+    border-bottom: 1px solid rgba(74, 96, 128, 0.2);
+  }
+  .field-note-item:first-child {
+    border-top: 1px solid rgba(74, 96, 128, 0.2);
+  }
+  .field-note-item a {
+    display: block;
+    padding: 32px 0;
+    text-decoration: none;
+    transition: padding-left 0.2s ease;
+  }
+  .field-note-item a:hover {
+    padding-left: 12px;
+  }
+  .field-note-date {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--coyote-orange);
+    margin-bottom: 12px;
+  }
+  .field-note-item h2 {
+    font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+    margin-bottom: 8px;
+    transition: color 0.2s ease;
+  }
+  .field-note-item a:hover h2 {
+    color: var(--coyote-orange);
+  }
+  .field-note-item p {
+    color: var(--ice-blue);
+    margin-bottom: 12px;
+  }
+  .field-note-cta {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate-grey);
+  }
+</style>

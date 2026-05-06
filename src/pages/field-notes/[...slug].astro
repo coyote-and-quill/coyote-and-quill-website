@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('field-notes', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<BaseLayout
+  title={`${post.data.title} — Coyote & Quill`}
+  description={post.data.description}
+>
+  <article class="field-note">
+    <header class="field-note-header">
+      <p class="label">Field Note</p>
+      <h1>{post.data.title}</h1>
+      <p class="field-note-meta">{formatDate(post.data.pubDate)}</p>
+    </header>
+
+    <div class="field-note-body">
+      <Content />
+    </div>
+
+    {post.data.linkedinUrl && (
+      <div class="field-note-footer">
+        <a href={post.data.linkedinUrl} class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+          Discuss on LinkedIn →
+        </a>
+      </div>
+    )}
+
+    <div class="field-note-back">
+      <a href="/field-notes">← All Field Notes</a>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .field-note {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+  .field-note-header {
+    margin-bottom: 48px;
+  }
+  .field-note-header h1 {
+    margin: 16px 0 12px;
+  }
+  .field-note-meta {
+    font-size: 0.85rem;
+    color: var(--slate-grey);
+  }
+  .field-note-body :global(h2),
+  .field-note-body :global(h3),
+  .field-note-body :global(h4) {
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+  }
+  .field-note-body :global(p) {
+    margin-bottom: 1.25em;
+    line-height: 1.75;
+  }
+  .field-note-body :global(ul),
+  .field-note-body :global(ol) {
+    margin: 1em 0 1.5em 1.5em;
+    color: var(--ice-blue);
+  }
+  .field-note-body :global(li) {
+    margin-bottom: 0.5em;
+  }
+  .field-note-body :global(blockquote) {
+    border-left: 3px solid var(--coyote-orange);
+    background: rgba(27, 58, 107, 0.15);
+    padding: 16px 20px;
+    margin: 1.5em 0;
+    font-style: italic;
+    color: var(--off-white);
+    border-radius: 0 4px 4px 0;
+  }
+  .field-note-body :global(blockquote p:last-child) {
+    margin-bottom: 0;
+  }
+  .field-note-body :global(a) {
+    color: var(--coyote-orange);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .field-note-body :global(a:hover) {
+    color: var(--off-white);
+  }
+  .field-note-body :global(code) {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(74, 96, 128, 0.3);
+    padding: 2px 6px;
+    border-radius: 2px;
+    font-size: 0.9em;
+  }
+  .field-note-body :global(pre) {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(74, 96, 128, 0.3);
+    padding: 20px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 1.5em 0;
+  }
+  .field-note-body :global(pre code) {
+    background: none;
+    border: none;
+    padding: 0;
+  }
+  .field-note-body :global(hr) {
+    border: none;
+    border-top: 1px solid rgba(74, 96, 128, 0.3);
+    margin: 2.5em 0;
+  }
+  .field-note-body :global(strong) {
+    color: var(--off-white);
+    font-weight: 600;
+  }
+  .field-note-footer {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(74, 96, 128, 0.2);
+  }
+  .field-note-back {
+    margin-top: 32px;
+    text-align: center;
+  }
+  .field-note-back a {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--slate-grey);
+  }
+  .field-note-back a:hover {
+    color: var(--coyote-orange);
+  }
+</style>

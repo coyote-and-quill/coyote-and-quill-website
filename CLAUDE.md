@@ -100,17 +100,34 @@ If you write or rewrite copy, it must read like someone who has been in the figh
 - **Page-specific styles** go in a scoped `<style>` block at the bottom of the page's `.astro` file (see `contact.astro` for example).
 - **Pages should not import other pages** — shared chrome lives in `BaseLayout.astro`.
 
-## Adding thought leadership posts (when ready)
+## Field Notes — Mon/Wed/Fri thought leadership
 
-Not built yet. When the first post is ready, the simplest path:
+The site has a content collection at `src/content/field-notes/` rendered to `/field-notes` (listing) and `/field-notes/<slug>` (post). Posts cadence: Mon/Wed/Fri, mirrored to LinkedIn.
 
-1. Create `src/content.config.ts` with an `insights` collection (Astro 5 content collections).
-2. Drop `.md` or `.mdx` files into `src/content/insights/`.
-3. Add `src/pages/insights/[...slug].astro` to render individual posts using `BaseLayout`.
-4. Add `src/pages/insights/index.astro` for the listing.
-5. Add an "Insights" link to the nav in `BaseLayout.astro`.
+### Workflow (site-first)
 
-Defer this scaffolding until the first post exists — don't build empty infrastructure.
+1. `pnpm new-post "Title of the post"` — scaffolds a markdown file with today's date, slugified filename, and `draft: true`.
+2. Write the post in the new file. Set `draft: false` when ready.
+3. Optional: add `linkedinUrl` to frontmatter once the LinkedIn version is published — renders a "Discuss on LinkedIn →" CTA at the bottom of the post.
+4. `git commit && git push` → Vercel auto-deploys → live at `/field-notes/<slug>`.
+5. Post a teaser + link to the live URL on LinkedIn.
+
+**Site is canonical.** The full piece lives here; LinkedIn gets the hook + link. This protects SEO and drives traffic to the website (the goal).
+
+### Frontmatter schema (`src/content.config.ts`)
+
+```yaml
+title: "..."           # required
+description: "..."     # required — used for listing preview + meta description
+pubDate: 2026-05-06    # required — drives sort order
+draft: false           # default false; true hides from listing + routes
+tags: []               # optional
+linkedinUrl: "..."     # optional — renders "Discuss on LinkedIn" link
+```
+
+### Where the post styling lives
+
+Prose styles (h2/h3/p/blockquote/code/links/etc.) are scoped in `src/pages/field-notes/[...slug].astro` via `:global()` selectors inside `<style>`. Brand palette tokens still come from `global.css`. If we later add prose elsewhere, promote those styles to a `.prose` class in `global.css`.
 
 ## Launch gate (from business plan, Section 12)
 
