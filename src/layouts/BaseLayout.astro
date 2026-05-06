@@ -1,0 +1,62 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="Coyote & Quill home">
+        {/* Replace .nav-logo-mark with <img src="/assets/logo/cq-logo.svg" /> when delivered */}
+        <div class="nav-logo-mark" aria-hidden="true">C&amp;Q</div>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Coyote &amp; Quill</span>
+          <span class="nav-logo-descriptor">Advisory · Strategy · Build</span>
+        </div>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" role="list">
+        <li><a href="/about">About</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/tracewell">TraceWell</a></li>
+        <li><a href="/case-studies">Case Studies</a></li>
+        <li><a href="/contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <slot />
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-motto">Observe · Assess · Advise</span>
+        <span class="footer-copy">&copy; 2025 <span>Coyote &amp; Quill LLC</span>. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js" is:inline></script>
+</body>
+</html>

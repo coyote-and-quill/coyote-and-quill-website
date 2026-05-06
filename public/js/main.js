@@ -1,6 +1,6 @@
 /* ============================================================
    COYOTE & QUILL — MAIN JS
-   Minimal. No dependencies. No build step.
+   Minimal. No dependencies. Loaded via /js/main.js in BaseLayout.
    ============================================================ */
 
 (function () {
@@ -16,7 +16,6 @@
       toggle.setAttribute('aria-expanded', isOpen);
     });
 
-    // Close nav when a link is clicked
     navLinks.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
         navLinks.classList.remove('open');
@@ -24,7 +23,6 @@
       });
     });
 
-    // Close nav on outside click
     document.addEventListener('click', function (e) {
       if (!toggle.contains(e.target) && !navLinks.contains(e.target)) {
         navLinks.classList.remove('open');
@@ -34,17 +32,16 @@
   }
 
   /* --- ACTIVE NAV LINK --- */
-  // Marks the current page's nav link as active
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  // Normalize trailing slashes; treat empty path as "/" so the home link matches.
+  const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
   document.querySelectorAll('.nav-links a').forEach(function (link) {
-    const linkPath = link.getAttribute('href').split('/').pop();
+    const linkPath = (link.getAttribute('href') || '').replace(/\/$/, '') || '/';
     if (linkPath === currentPath) {
       link.classList.add('active');
     }
   });
 
   /* --- CONTACT FORM HANDLER --- */
-  // Handles the contact form submit (update with your preferred form service)
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
@@ -52,7 +49,7 @@
       const btn = contactForm.querySelector('[type="submit"]');
       const original = btn.textContent;
 
-      // TODO: Replace this block with your form service (Formspree, Netlify Forms, etc.)
+      // TODO: Replace with form service (Formspree, Vercel Functions, etc.)
       btn.textContent = 'Message Sent';
       btn.disabled = true;
 
@@ -64,7 +61,7 @@
     });
   }
 
-  /* --- SCROLL: NAV SHADOW ON SCROLL --- */
+  /* --- NAV SHADOW ON SCROLL --- */
   const nav = document.querySelector('.site-nav');
   if (nav) {
     window.addEventListener('scroll', function () {
