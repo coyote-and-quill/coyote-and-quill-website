@@ -1,12 +1,36 @@
 # CLAUDE.md — Coyote & Quill Website
 
 Operating instructions for Claude Code sessions in this repo.
+Last verified: 2026-06-04
 
 ## What this is
 
 The public marketing site for **Coyote & Quill LLC** at `coyoteandquill.com`. Six pages (home, about, services, tracewell, case-studies, contact). Hosted on Vercel.
 
 This site is **not** a product or platform — it is the firm's primary market-facing asset. Everything here is in service of credibility, conversion, and brand discipline.
+
+Copyright (c) 2026 Glen Lewis. All Rights Reserved. Proprietary license.
+
+## Regulatory Scope
+
+Scope: none — public marketing site, no user data beyond the contact form. **Merge tier: auto** — green CI auto-merges to `main` (which deploys production via Vercel; the CI build gate is the protection).
+
+## Workflow Rules
+
+1. **Issue first** — create a GitHub issue before starting any work (title, description, acceptance criteria, labels).
+2. **Branch always** — `feat/...`, `fix/...`, `chore/...`. Direct pushes to `main` are rejected by ruleset.
+3. **PR to merge** — summary + test plan. This repo is Regulatory Scope: none → green CI auto-merges.
+4. **Close explicitly** — never auto-close keywords (closes/fixes #N); reference as `refs #N`; close the issue as a separate step with a summary comment.
+5. **Serial GitHub ops** — never run issue/milestone operations in parallel.
+6. **Commit identity** — `glen@coyoteandquill.com` (set per-repo).
+
+## Quality Gates
+
+Run before every push: `pnpm build` completes cleanly. CI runs build + gitleaks; a PR cannot merge red (enforced by ruleset).
+
+## MCP & Agent Tooling
+
+No MCP servers configured in-repo. Skills from `coyote-and-quill/skills` assumed installed: `scoping`, `closeout`.
 
 ## Quick reference
 
@@ -158,5 +182,7 @@ Staging on Vercel preview URLs is fine before all gates are met.
 2. Add Tailwind, CSS-in-JS, or a UI component library — hand-written CSS is the standard.
 3. Add tracking scripts, chatbots, or third-party widgets without an explicit decision.
 4. Touch the brand palette or voice rules without referencing the business plan.
-5. Push to `main` without verifying `pnpm build` completes cleanly.
+5. Push to `main` without verifying `pnpm build` completes cleanly (CI enforces this on every PR).
 6. Delete the `C&Q` placeholder logo until the vector logo is committed.
+7. **This repo is PUBLIC** — never commit anything not meant for the world: secrets, client names, unreleased product details, internal docs. Secret scanning + push protection + gitleaks CI are on; a key has leaked in this org before (org audit 2026-06-04).
+8. **If a key ever reaches a commit anyway: ROTATE it immediately; do not just remove it** — git history keeps it forever, and this history is publicly cloneable.
