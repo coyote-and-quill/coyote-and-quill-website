@@ -140,7 +140,6 @@ section {
   justify-content: space-between;
 }
 
-/* Logo placeholder — replace with SVG when delivered */
 .nav-logo {
   display: flex;
   align-items: center;
@@ -148,19 +147,10 @@ section {
   text-decoration: none;
 }
 
-.nav-logo-mark {
-  width: 36px;
-  height: 36px;
-  border: 2px solid var(--coyote-orange);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-size: 0.75rem;
-  font-style: italic;
-  color: var(--coyote-orange);
-  letter-spacing: 0.02em;
+.nav-logo-img {
+  width: 40px;
+  height: 40px;
+  display: block;
   flex-shrink: 0;
 }
 
