@@ -124,9 +124,9 @@ If you write or rewrite copy, it must read like someone who has been in the figh
 - **Page-specific styles** go in a scoped `<style>` block at the bottom of the page's `.astro` file (see `contact.astro` for example).
 - **Pages should not import other pages** — shared chrome lives in `BaseLayout.astro`.
 
-## Field Notes — Mon/Wed/Fri thought leadership
+## Field Notes — weekly thought leadership
 
-The site has a content collection at `src/content/field-notes/` rendered to `/field-notes` (listing) and `/field-notes/<slug>` (post). Posts cadence: Mon/Wed/Fri, mirrored to LinkedIn.
+The site has a content collection at `src/content/field-notes/` rendered to `/field-notes` (listing) and `/field-notes/<slug>` (post). Posts cadence: **weekly** (steady, solo-sustainable — was Mon/Wed/Fri; revised in the 2026-06-18 launch-campaign brief), mirrored to LinkedIn.
 
 ### Workflow (site-first)
 
@@ -153,15 +153,21 @@ linkedinUrl: "..."     # optional — renders "Discuss on LinkedIn" link
 
 Prose styles (h2/h3/p/blockquote/code/links/etc.) are scoped in `src/pages/field-notes/[...slug].astro` via `:global()` selectors inside `<style>`. Brand palette tokens still come from `global.css`. If we later add prose elsewhere, promote those styles to a `.prose` class in `global.css`.
 
-## Launch gate (from business plan, Section 12)
+## Launch gate (target: public by end of June 2026)
 
+Governing brief: `docs/briefs/2026-06-18-website-launch-campaign.md` (full Definition of Done there).
 Do **not** push the site to a production domain until:
 
 - [ ] LLC is formed and registered
-- [ ] Vector logo files in hand (SVG, AI, PNG) — currently using `C&Q` text placeholder in `BaseLayout.astro`
+- [x] Vector logo files in hand — `.ai` + `.eps` + transparent PNG delivered 2026-06-18 (light-blue seal is the lead). Still TODO: optimized **SVG** for nav + swap out the `C&Q` text placeholder in `BaseLayout.astro`.
 - [ ] `coyoteandquill.com` DNS is configured to Vercel
-- [ ] At least one case study or service page is publication-ready
-- [ ] Contact form has a real backend (Formspree, Vercel Function, etc.) — currently fake-submits
+- [ ] ≥1 **anonymized** case study published (no client/product names) — Claude drafts from Glen's input, Glen approves
+- [ ] Contact form wired to **Formspree** (decided) — real POST + success/error states; mailto fallback retained (`main.js` + `contact.astro` currently fake-submit)
+- [ ] Favicon + OG social card + per-page SEO meta + sitemap/robots (all currently absent)
+- [ ] Vibe Coding Workshop section on `/services` + 4th homepage card
+- [ ] **Vercel Web Analytics** enabled (the documented analytics decision; cookie-free)
+- [ ] Brand-asset hygiene — source `.ai`/`.eps`/mockups moved OUT of `public/` (it deploys publicly)
+- [ ] "Est."/"©" year → 2026 site-wide
 
 Staging on Vercel preview URLs is fine before all gates are met.
 
@@ -169,12 +175,18 @@ Staging on Vercel preview URLs is fine before all gates are met.
 
 | Where | What |
 |---|---|
-| `BaseLayout.astro` | `.nav-logo-mark` is a `C&Q` text placeholder — swap for `<img src="/assets/logo/cq-logo.svg" />` when vector logo arrives |
-| `about.astro` | Founder photo is a placeholder card — swap when image is in hand |
-| `tracewell.astro` | "Coming Soon" placeholder section — flesh out before launch |
-| `case-studies.astro` | All three case studies are stubs — write at least one before launch |
-| `contact.astro` | Form `action="#"` and JS handler in `main.js` are fakes — wire to a real form service |
-| `contact.astro` | `mailto:hello@coyoteandquill.com` — confirm address is operational |
+| `BaseLayout.astro` | `.nav-logo-mark` is a `C&Q` text placeholder — swap for the light-blue seal as optimized SVG (PNG fallback); remove `.nav-logo-mark` CSS after |
+| `BaseLayout.astro` | No favicon, OG/Twitter meta, canonical, or sitemap/robots — add for launch (SEO/social gate item) |
+| `about.astro` | Founder photo is a placeholder card — **post-launch** (not a launch gate); keep placeholder |
+| `tracewell.astro` | "Coming Soon" placeholder section — stays "coming soon" through launch (out of scope) |
+| `case-studies.astro` | Publish **≥1 anonymized** study for launch (CS-01, healthcare AI integration); CS-02/03 are post-launch |
+| `contact.astro` + `main.js` | Form fake-submits — wire to **Formspree** (real POST + states); keep `mailto:hello@coyoteandquill.com` fallback |
+
+## Content model & asset pipeline
+
+- **Content:** Field Notes is the only content collection (`src/content/field-notes/`, schema in `src/content.config.ts`). Pages are hand-authored `.astro`. Site is canonical for all written content; LinkedIn gets a hook + link.
+- **Web assets** live in `public/` and **deploy publicly** — keep this folder lean (optimized SVG/PNG/ICO/OG-image only). **Source/vector files (`.ai`, `.eps`, print renders, 3D mockups) must NOT live in `public/`** — keep them in a non-served `brand/` dir (or outside the repo). The light-blue seal is the canonical brand mark; favicon + OG card derive from the square PROFILE PIC asset.
+- **Analytics:** Vercel Web Analytics only (cookie-free, no consent banner) — the one approved third-party script.
 
 ## Do NOT
 
