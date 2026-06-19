@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://coyoteandquill.com/sitemap-index.xml
