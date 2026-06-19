@@ -6,3 +6,13 @@ dist
 *.log
 .env
 .env.local
+
+# Brand source assets — this repo is PUBLIC. Source/vector files (.ai, .eps),
+# print renders, 3D mockups, and the raw delivery pack must never be committed
+# or served. Keep them in the gitignored /brand/ dir; ship only optimized web
+# assets (SVG/PNG/ICO/OG) from public/.
+/brand/
+*.ai
+*.eps
+# stray raw-delivery drops sometimes land at repo root
+/kairachel451-attachments*/
