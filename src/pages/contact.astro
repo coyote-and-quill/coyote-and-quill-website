@@ -50,8 +50,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
 
         <div>
-          {/* TODO: Connect form action to a service (Formspree, Vercel Functions, etc.) */}
-          <form id="contact-form" action="#" method="POST" novalidate>
+          <form id="contact-form" action="https://formspree.io/f/mgobglyd" method="POST">
+            {/* Honeypot — bots fill this; Formspree silently drops those submissions */}
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px" />
+            <input type="hidden" name="_subject" value="New inquiry — coyoteandquill.com" />
             <div class="form-group">
               <label for="name">Full Name</label>
               <input type="text" id="name" name="name" placeholder="Your name" required />
@@ -82,6 +84,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
               Send Message
             </button>
+            <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
           </form>
 
           <p style="margin-top: 20px; font-size: 0.8rem; color: var(--slate-grey); text-align: center;">
@@ -146,6 +149,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   select option {
     background: var(--night-field);
+  }
+
+  .form-status {
+    margin-top: 16px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    padding-left: 12px;
+    border-left: 2px solid transparent;
+  }
+
+  .form-status:empty {
+    display: none;
+  }
+
+  .form-status.success {
+    color: var(--ice-blue);
+    border-left-color: var(--ice-blue);
+  }
+
+  .form-status.error {
+    color: var(--coyote-orange);
+    border-left-color: var(--coyote-orange);
   }
 
   @media (max-width: 768px) {

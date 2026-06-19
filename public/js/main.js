@@ -41,23 +41,58 @@
     }
   });
 
-  /* --- CONTACT FORM HANDLER --- */
+  /* --- CONTACT FORM HANDLER (Formspree, progressive enhancement) --- */
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
+    const status = document.getElementById('form-status');
+    const MAILTO = 'hello@coyoteandquill.com';
+
+    function setStatus(message, kind) {
+      if (!status) return;
+      status.textContent = message;
+      status.className = 'form-status' + (kind ? ' ' + kind : '');
+    }
+
+    contactForm.addEventListener('submit', async function (e) {
       e.preventDefault();
       const btn = contactForm.querySelector('[type="submit"]');
       const original = btn.textContent;
-
-      // TODO: Replace with form service (Formspree, Vercel Functions, etc.)
-      btn.textContent = 'Message Sent';
+      setStatus('', '');
       btn.disabled = true;
+      btn.textContent = 'Sending…';
 
-      setTimeout(function () {
+      try {
+        const res = await fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { Accept: 'application/json' },
+        });
+
+        if (res.ok) {
+          contactForm.reset();
+          btn.textContent = 'Message Sent';
+          setStatus('Thanks — your message is in. We read every one and will reply if there’s a fit.', 'success');
+          setTimeout(function () {
+            btn.textContent = original;
+            btn.disabled = false;
+          }, 4000);
+        } else {
+          let msg = 'Something went wrong. Please try again, or email ' + MAILTO + '.';
+          try {
+            const data = await res.json();
+            if (data && Array.isArray(data.errors) && data.errors.length) {
+              msg = data.errors.map(function (x) { return x.message; }).join(' ');
+            }
+          } catch (_) { /* keep fallback message */ }
+          setStatus(msg, 'error');
+          btn.textContent = original;
+          btn.disabled = false;
+        }
+      } catch (_) {
+        setStatus('Network error — please try again, or email ' + MAILTO + '.', 'error');
         btn.textContent = original;
         btn.disabled = false;
-        contactForm.reset();
-      }, 3000);
+      }
     });
   }
 
