@@ -1,0 +1,329 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const facts = [
+  { label: 'Sector', value: 'Healthcare technology (HIPAA · FDA 21 CFR Part 11)' },
+  { label: 'Team', value: 'One — solo founder, AI-native workflow' },
+  { label: 'Timeline', value: 'First commit to production-ready in ~4.5 months' },
+  { label: 'Stack', value: 'Next.js · Supabase (Postgres / RLS) · Claude · pnpm + Turborepo' },
+];
+
+const stats = [
+  { n: '116K+', l: 'lines of TypeScript' },
+  { n: '339', l: 'commits, solo' },
+  { n: '1,245', l: 'automated tests' },
+  { n: '68', l: 'database migrations' },
+  { n: '11 + 2', l: 'packages and apps' },
+  { n: '0', l: 'TypeScript errors' },
+];
+---
+<BaseLayout
+  title="Vibe coding a regulated platform — Coyote & Quill"
+  description="How one person and an AI shipped a HIPAA- and FDA-regulated healthcare platform in about four and a half months — and the discipline that made AI-generated code survive production."
+>
+  <article class="study">
+    <header class="study-header">
+      <p class="label">Case Study 01</p>
+      <h1>I built a regulated healthcare platform solo. The interesting part is how.</h1>
+      <p class="study-lede">
+        One operator. One AI. Roughly 116,000 lines of production TypeScript, in a
+        HIPAA- and FDA-regulated domain, in about four and a half months. The platform
+        matters. The <em>method</em> matters more — because the method is what I bring
+        to your team.
+      </p>
+    </header>
+
+    <dl class="study-facts">
+      {facts.map((f) => (
+        <div class="study-fact">
+          <dt>{f.label}</dt>
+          <dd>{f.value}</dd>
+        </div>
+      ))}
+    </dl>
+
+    <div class="study-body">
+      <h2>The method: vibe coding, with guardrails</h2>
+      <p>
+        The headline writes itself — one person, an AI, a regulated platform, a few
+        months. The headline is also the least useful part. Generating code quickly is
+        now table stakes. The question that actually matters is whether what comes out
+        survives contact with production, an auditor, and the next six months of changes.
+        Here is the discipline that made it hold.
+      </p>
+      <ul>
+        <li>
+          <strong>Claude wrote most of the code. I directed it.</strong> The build ran on
+          Claude as the engine — components, services, tests, migrations — with me scoping
+          the work, reviewing every diff, and owning the architecture. Speed came from the
+          AI. Judgment did not.
+        </li>
+        <li>
+          <strong>The AI operates under written law — and inside a hard perimeter.</strong>
+          Two layers of constraint, not one. The <em>law</em> is a set of rule files the agent
+          reads every session: migration conventions, row-level security required on every
+          table, the single approved path for version tracking, and "traps" logged from past
+          mistakes so it cannot repeat them. The <em>perimeter</em> is the harness itself — the
+          agent may only run an approved set of commands, and a hook physically blocks any push
+          to the production branch without my hand on it. In a regulated build, that
+          approval-gating is not a convenience; it is the audit-trail control surface you point
+          an auditor at. Constraints are not a limit on the system — they are what make it safe
+          to employ.
+        </li>
+        <li>
+          <strong>Nothing ships red.</strong> Every change moves through issue → branch →
+          pull request → CI. The pipeline runs lint, a strict TypeScript typecheck held at
+          zero errors, the full test suite, and secret scanning. A pull request that fails
+          any of them cannot merge. Staging merges itself on green; production merges only
+          when I read the diff and click the button myself — the recorded, pre-implementation
+          approval that regulated change control expects.
+        </li>
+        <li>
+          <strong>The AI built against contracts, not into a monolith.</strong> The fastest
+          way to drown in AI-generated code is to let it all pile into one app — which is what
+          most first builds quietly become: a tangled mess that fights you every time you try
+          to fix or extend it. This codebase is eleven packages behind explicit interfaces.
+          Give the agent a defined contract and its output conforms to a boundary instead of
+          coupling to everything in reach. Modularity is how you keep an AI's <em>speed</em>
+          from turning into an AI's <em>mess</em>.
+        </li>
+      </ul>
+      <p>
+        None of this is exotic tooling — it is the configuration layer most teams skip. In a
+        study of 2,853 repositories, the typical project configured almost nothing beyond a
+        single context file; only 158 used agent skills at all, and few used hooks or
+        subagents. This build used seven of the eight mechanisms the study catalogs. In a
+        regulated domain, that configuration layer is the difference between an assistant that
+        suggests and a system you can trust to act.
+        <span class="study-cite">(Galster et al., <em>Configuring Agentic AI Coding Tools</em>, arXiv:2602.14690)</span>
+      </p>
+
+      <h2>The numbers</h2>
+      <p>What that method produced, all of it verifiable in the repository:</p>
+      <dl class="study-stats">
+        {stats.map((s) => (
+          <div class="study-stat">
+            <dt>{s.n}</dt>
+            <dd>{s.l}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <h2>Where it breaks — and how I caught it</h2>
+      <p>
+        The first place an AI build breaks is not the code. It is the brief. An AI executes
+        the order it is given — and if the order is incomplete, it fills the gaps itself,
+        confidently, in ways that make sense to the model and not to your product. A system
+        tested for ten users and never told to expect fifteen thousand gets built for ten.
+        That is not an AI failure; it is a
+        <a href="/field-notes/you-dont-need-to-code-give-orders">requirements failure</a>,
+        and it would sink a hand-written build just as fast. Knowing
+        <a href="/field-notes/the-skill-isnt-prompting">which assumptions to shape before you
+        prompt</a> is the actual skill — and the reason this platform was built for production,
+        not for the demo.
+      </p>
+      <p>
+        The second place it breaks is the code itself. AI-generated code is fast; it is not
+        automatically correct, and in a regulated domain "mostly correct" is a liability. So
+        before any wider rollout I ran a multi-agent review against my own codebase — separate
+        passes for security, database, and user experience. It surfaced 82 issues, six of them
+        critical. Every one was fixable, and every one was fixed before rollout.
+      </p>
+      <p>
+        That is the point. A solo developer with an AI and no guardrails ships those 82 issues
+        — and builds the ten-user version of the system. A solo developer with an AI, a sharp
+        brief, and a review gate ships neither. The velocity is the AI; the safety is the
+        discipline layered on top of it — and the gap between "the AI made it fast" and "the
+        AI made it right" is the whole game.
+      </p>
+
+      <h2>What this means for you</h2>
+      <p>
+        This is the engagement, not a war story. The same method is what Coyote &amp; Quill
+        brings to your problem.
+      </p>
+      <ul>
+        <li>
+          <strong>Custom App Development</strong> — a working, compliance-aware application
+          built and shipped, not a strategy deck about one. Built the way this one was:
+          modular, tested, audited, and yours.
+        </li>
+        <li>
+          <strong>The Vibe Coding Workshop</strong> — your team builds a real, deployable
+          tool with AI in the room and leaves with the operator's playbook: how to direct the
+          agent, where it breaks, and the guardrails that keep its output from shipping
+          broken. The discipline above is the curriculum. This platform is the proof it works.
+        </li>
+      </ul>
+      <p>
+        If your team is adopting AI-assisted development and the stakes are real — regulated
+        data, production systems, an audit on the horizon — the speed is the easy part. The
+        discipline is what you are buying.
+      </p>
+
+      <blockquote>
+        <p>
+          AI made one person as fast as a small team. The discipline is what kept the output
+          shippable. You can have both — that is the entire pitch.
+        </p>
+      </blockquote>
+    </div>
+
+    <div class="study-cta">
+      <p class="label" style="margin-bottom: 16px;">Bring the method to your team</p>
+      <h2>Real stakes, real speed, and the discipline in between.</h2>
+      <a href="/contact" class="btn btn-primary">Start a Conversation</a>
+    </div>
+
+    <div class="study-back">
+      <a href="/case-studies">← All Case Studies</a>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .study {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+  .study-header {
+    margin-bottom: 40px;
+  }
+  .study-header h1 {
+    margin: 16px 0 20px;
+  }
+  .study-lede {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--off-white);
+  }
+  .study-facts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: rgba(74, 96, 128, 0.3);
+    border: 1px solid rgba(74, 96, 128, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0 0 56px;
+  }
+  .study-fact {
+    background: var(--night-field);
+    padding: 18px 20px;
+  }
+  .study-fact dt {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--coyote-orange);
+    margin-bottom: 6px;
+  }
+  .study-fact dd {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--ice-blue);
+  }
+  .study-body h2 {
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+  }
+  .study-body p {
+    margin-bottom: 1.25em;
+    line-height: 1.75;
+  }
+  .study-body ul {
+    margin: 1em 0 1.5em 1.5em;
+    color: var(--ice-blue);
+  }
+  .study-body li {
+    margin-bottom: 1em;
+    line-height: 1.7;
+  }
+  .study-body strong {
+    color: var(--off-white);
+    font-weight: 600;
+  }
+  .study-body em {
+    color: var(--off-white);
+    font-style: italic;
+  }
+  .study-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(74, 96, 128, 0.3);
+    border: 1px solid rgba(74, 96, 128, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1.5em 0 0.5em;
+  }
+  .study-stat {
+    background: var(--night-field);
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .study-stat dt {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    font-style: italic;
+    color: var(--off-white);
+    line-height: 1;
+  }
+  .study-stat dd {
+    margin: 8px 0 0;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    color: var(--slate-grey);
+  }
+  .study-cite {
+    display: block;
+    margin-top: 0.5em;
+    font-size: 0.8rem;
+    color: var(--slate-grey);
+  }
+  .study-body blockquote {
+    border-left: 3px solid var(--coyote-orange);
+    background: rgba(27, 58, 107, 0.15);
+    padding: 16px 20px;
+    margin: 2em 0 0;
+    font-style: italic;
+    color: var(--off-white);
+    border-radius: 0 4px 4px 0;
+  }
+  .study-body blockquote p:last-child {
+    margin-bottom: 0;
+  }
+  .study-cta {
+    margin-top: 72px;
+    padding-top: 48px;
+    border-top: 1px solid rgba(74, 96, 128, 0.2);
+    text-align: center;
+  }
+  .study-cta h2 {
+    max-width: 520px;
+    margin: 0 auto 24px;
+  }
+  .study-back {
+    margin-top: 48px;
+    text-align: center;
+  }
+  .study-back a {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--slate-grey);
+  }
+  .study-back a:hover {
+    color: var(--coyote-orange);
+  }
+  @media (max-width: 560px) {
+    .study-facts,
+    .study-stats {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

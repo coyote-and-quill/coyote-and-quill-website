@@ -386,6 +386,34 @@ section {
   margin-bottom: 12px;
 }
 
+/* Feature card — a full-width, clickable case-study lead */
+.card-feature {
+  display: block;
+  padding: 40px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-feature h2 {
+  margin-bottom: 16px;
+  color: var(--off-white);
+}
+
+.card-feature:hover {
+  border-color: rgba(196, 98, 26, 0.5);
+}
+
+.card-cta {
+  margin-top: 20px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--coyote-orange);
+}
+
+.card-feature:hover .card-cta {
+  color: var(--off-white);
+}
+
 /* --- GRID LAYOUTS --- */
 .grid-3 {
   display: grid;
