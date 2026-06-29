@@ -108,11 +108,27 @@ section {
   margin-bottom: 16px;
 }
 
+/* Section divider — a maker's mark: short rule terminated by the brand pen nib. */
 .divider {
-  width: 48px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 24px 0;
+}
+
+.divider::before {
+  content: '';
+  width: 36px;
   height: 2px;
   background: var(--coyote-orange);
-  margin: 24px 0;
+}
+
+.divider::after {
+  content: '';
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  background: url('/assets/logo/cq-nib.svg') center / contain no-repeat;
 }
 
 /* --- NAVIGATION --- */
@@ -256,10 +272,30 @@ section {
   pointer-events: none;
 }
 
-.hero-content {
+.hero-layout {
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 56px;
+}
+
+.hero-content {
   max-width: 720px;
+}
+
+/* The full seal earns its one ceremonial showcase here, beside the headline. */
+.hero-seal {
+  margin-left: auto;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.hero-seal img {
+  width: clamp(220px, 28vw, 380px);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 12px 40px rgba(27, 58, 107, 0.5));
 }
 
 .hero-eyebrow {
@@ -616,6 +652,20 @@ section {
 
   .hero-motto {
     flex-wrap: wrap;
+  }
+
+  .hero-layout {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 36px;
+  }
+
+  .hero-seal {
+    margin-left: 0;
+  }
+
+  .hero-seal img {
+    width: clamp(160px, 42vw, 220px);
   }
 }
 
