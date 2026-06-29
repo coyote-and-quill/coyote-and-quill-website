@@ -447,6 +447,24 @@ section {
   margin-top: var(--section-gap);
 }
 
+.footer-brand {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.footer-seal {
+  width: 120px;
+  height: 120px;
+  display: block;
+  opacity: 0.92;
+  transition: opacity 0.2s ease;
+}
+
+.footer-brand:hover .footer-seal {
+  opacity: 1;
+}
+
 .footer-inner {
   display: flex;
   align-items: center;
@@ -602,7 +620,7 @@ section {
 }
 
 @media (max-width: 480px) {
-  .nav-logo-text {
+  .nav-logo-descriptor {
     display: none;
   }
 }
