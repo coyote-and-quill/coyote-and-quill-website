@@ -8,7 +8,7 @@
 :root {
   --night-field:   #1B1F28;   /* Background — all pages */
   --ttecg-blue:    #1B3A6B;   /* Headings, borders, structure */
-  --slate-grey:    #4A6080;   /* Secondary text, dividers */
+  --slate-grey:    #7E93B5;   /* Secondary text — lightened for WCAG AA (4.86:1 on cards); was #4A6080 (2.57:1, failed). Border/divider rgba values are literal, unaffected. */
   --ice-blue:      #8AAAC8;   /* Primary body text on dark */
   --coyote-orange: #C4621A;   /* Accent — use sparingly */
   --white:         #FFFFFF;
