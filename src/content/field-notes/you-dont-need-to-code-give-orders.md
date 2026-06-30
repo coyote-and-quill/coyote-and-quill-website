@@ -1,7 +1,7 @@
 ---
 title: "You don't need to code. You need to give orders."
 description: "A site tested for ten users crashed under fifteen thousand. Everyone blamed vibe coding. It was a requirements failure — which makes it a leadership problem, not an AI one."
-pubDate: 2026-06-25
+pubDate: 2026-06-26
 draft: false
 tags: ["vibe coding", "leadership", "requirements"]
 # linkedinUrl: ""
