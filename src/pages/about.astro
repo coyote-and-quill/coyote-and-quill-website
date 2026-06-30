@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout
   title="About — Coyote & Quill"
-  description="The firm's credibility is not borrowed. Retired Marine Cobra pilot. TTECG Coyote. AI adoption practitioner. Combat advisor."
+  description="The firm's credibility is not borrowed. Retired Marine Corps Lieutenant Colonel and AH-1W Cobra pilot. TTECG Coyote. AI adoption practitioner and combat advisor."
 >
   <div class="page-hero">
     <div class="container">
@@ -19,6 +19,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div>
           <p class="label">Founder</p>
           <h2>Glen Lewis</h2>
+          <p class="founder-rank">Lieutenant Colonel, U.S. Marine Corps (Retired)</p>
           <div class="divider"></div>
           <p>Retired United States Marine Corps AH-1W Cobra pilot. TTECG Coyote — a training advisor and opposing force observer at the Marine Corps Tactical Training and Exercise Control Group, training unit commanders to think, not just react.</p>
           <p>Combat advisor who trained Mongolian, Georgian, and Iraqi Security Forces in operational tactics and leadership — embedding in unfamiliar cultures and organizations, reading them accurately, and helping their people build capabilities they could carry forward on their own. That is the same work, now applied to AI: looking across a client's culture and organization to identify and implement solutions they keep long after the engagement ends.</p>
@@ -26,10 +27,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <p>Coyote &amp; Quill is a Washington State Certified Veteran-Owned Business.</p>
         </div>
         <div>
-          <div class="card" style="text-align: center; padding: 64px 32px;">
-            <p class="label" style="margin-bottom: 8px;">Founder Photo</p>
-            <p style="color: var(--slate-grey); font-size: 0.85rem;">[ Image placeholder — replace with founder photo ]</p>
-          </div>
+          <img class="founder-photo" src="/glen-lewis.jpg" alt="Glen Lewis, founder of Coyote & Quill" width="600" height="800" />
         </div>
       </div>
     </div>
@@ -105,3 +103,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .founder-rank {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--ice-blue);
+    margin: 4px 0 0;
+  }
+  .founder-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    border: 1px solid rgba(74, 96, 128, 0.25);
+  }
+</style>
