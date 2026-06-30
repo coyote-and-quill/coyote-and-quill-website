@@ -57,6 +57,45 @@ img {
   display: block;
 }
 
+/* --- ACCESSIBILITY --- */
+/* Visible keyboard focus indicator for all interactive elements. */
+:focus-visible {
+  outline: 2px solid var(--ice-blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Skip-to-content link — hidden until focused by keyboard. */
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -56px;
+  z-index: 200;
+  background: var(--off-white);
+  color: var(--night-field);
+  padding: 10px 18px;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 16px;
+  color: var(--night-field);
+}
+
+/* Respect reduced-motion preference. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* --- TYPOGRAPHY --- */
 h1, h2, h3, h4 {
   font-family: var(--font-display);

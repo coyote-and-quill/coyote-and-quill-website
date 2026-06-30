@@ -52,6 +52,8 @@ const ogImage = new URL('/og-default.png', Astro.site);
 </head>
 <body>
 
+  <a href="#main" class="skip-link">Skip to content</a>
+
   <nav class="site-nav" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
       <a href="/" class="nav-logo" aria-label="Coyote & Quill home">
@@ -75,14 +77,14 @@ const ogImage = new URL('/og-default.png', Astro.site);
     </div>
   </nav>
 
-  <div class="page-content">
+  <main class="page-content" id="main">
     <slot />
-  </div>
+  </main>
 
   <footer class="site-footer">
     <div class="container">
       <a href="/" class="footer-brand" aria-label="Coyote & Quill home">
-        <img class="footer-seal" src="/assets/logo/cq-seal-02.svg" alt="Coyote & Quill" width="120" height="120" />
+        <img class="footer-seal" src="/assets/logo/cq-seal-02.svg" alt="" width="120" height="120" />
       </a>
       <p class="footer-veteran">A Washington State Certified Veteran-Owned Business</p>
       <div class="footer-inner">
