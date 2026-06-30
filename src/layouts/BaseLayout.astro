@@ -5,13 +5,70 @@ import Analytics from '@vercel/analytics/astro';
 interface Props {
   title: string;
   description: string;
+  ogType?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title, description } = Astro.props;
+const { title, description, ogType = 'website', jsonLd } = Astro.props;
 
 // Absolute URLs for canonical + social cards (Astro.site = https://coyoteandquill.com)
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL('/og-default.png', Astro.site);
+const origin = canonical.origin;
+
+// Sitewide entity graph — Organization + founder Person (E-E-A-T) + WebSite.
+const orgGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${origin}/#org`,
+      name: 'Coyote & Quill',
+      legalName: 'Coyote & Quill LLC',
+      url: `${origin}/`,
+      logo: `${origin}/apple-touch-icon.png`,
+      image: `${origin}/og-default.png`,
+      description:
+        'AI implementation strategy, vibe coding engagements, and custom application development for leaders in healthcare, defense-adjacent, and regulated industries.',
+      slogan: 'Observe. Assess. Advise.',
+      areaServed: 'US',
+      founder: { '@id': `${origin}/#glen` },
+      knowsAbout: [
+        'AI implementation strategy',
+        'AI readiness assessment',
+        'custom software development',
+        'HIPAA compliance',
+        'vibe coding',
+      ],
+    },
+    {
+      '@type': 'Person',
+      '@id': `${origin}/#glen`,
+      name: 'Glen Lewis',
+      jobTitle: 'Founder',
+      worksFor: { '@id': `${origin}/#org` },
+      description:
+        'Retired U.S. Marine Corps Lieutenant Colonel and AH-1W Cobra pilot, TTECG Coyote, and AI adoption practitioner.',
+      image: `${origin}/glen-lewis.jpg`,
+      knowsAbout: [
+        'AI adoption',
+        'AI strategy',
+        'custom application development',
+        'healthcare compliance',
+        'vibe coding',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${origin}/#website`,
+      url: `${origin}/`,
+      name: 'Coyote & Quill',
+      publisher: { '@id': `${origin}/#org` },
+    },
+  ],
+};
+
+const pageSchemas = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +88,7 @@ const ogImage = new URL('/og-default.png', Astro.site);
   <meta name="theme-color" content="#1B1F28" />
 
   <!-- Open Graph -->
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={ogType} />
   <meta property="og:site_name" content="Coyote & Quill" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
@@ -49,6 +106,12 @@ const ogImage = new URL('/og-default.png', Astro.site);
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Structured data: sitewide Organization + founder Person + WebSite -->
+  <script type="application/ld+json" set:html={JSON.stringify(orgGraph)} />
+  {pageSchemas.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))}
 </head>
 <body>
 

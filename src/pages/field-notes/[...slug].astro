@@ -15,10 +15,28 @@ const { Content } = await render(post);
 
 const formatDate = (date: Date) =>
   date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+
+const origin = (Astro.site ?? new URL('https://coyoteandquill.com')).origin;
+const postUrl = `${origin}/field-notes/${post.id}`;
+const blogPostingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  url: postUrl,
+  mainEntityOfPage: postUrl,
+  image: `${origin}/og-default.png`,
+  inLanguage: 'en-US',
+  author: { '@id': `${origin}/#glen` },
+  publisher: { '@id': `${origin}/#org` },
+};
 ---
 <BaseLayout
   title={`${post.data.title} — Coyote & Quill`}
   description={post.data.description}
+  ogType="article"
+  jsonLd={blogPostingSchema}
 >
   <article class="field-note">
     <header class="field-note-header">
