@@ -1,7 +1,7 @@
 ---
 title: "The skill isn't prompting"
 description: "AI fills in blanks you didn't know existed. The real skill in vibe coding isn't prompting — it's knowing which assumptions to shape before you type the first message."
-pubDate: 2026-05-28
+pubDate: 2026-06-24
 draft: false
 tags: ["vibe coding", "ai-assisted development", "requirements"]
 # linkedinUrl: ""
