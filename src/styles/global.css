@@ -489,6 +489,16 @@ section {
   opacity: 1;
 }
 
+.footer-veteran {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ice-blue);
+  margin: 0 0 28px;
+}
+
 .footer-inner {
   display: flex;
   align-items: center;
