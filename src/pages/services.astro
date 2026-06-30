@@ -1,9 +1,75 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const origin = (Astro.site ?? new URL('https://coyoteandquill.com')).origin;
+
+const services = [
+  {
+    name: 'AI Implementation Strategy',
+    url: `${origin}/services#implementation`,
+    description:
+      'A fixed-fee Capabilities-Based Assessment that answers honestly whether you need AI, a DOTMLPF-P readiness assessment, and full AI adoption and integration.',
+  },
+  {
+    name: 'Vibe Coding Engagement',
+    url: `${origin}/services#vibe-coding`,
+    description:
+      'A five-day engagement where your team ships a real, deployed internal tool with AI and installs the SMEAC briefing doctrine to keep building.',
+  },
+  {
+    name: 'Custom App Development',
+    url: `${origin}/services#app-dev`,
+    description:
+      'Custom web-based, AI-augmented applications built to survive production and compliance — HIPAA and FDA 21 CFR Part 11 where it counts.',
+  },
+];
+
+const serviceSchemas = services.map((s) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: s.name,
+  serviceType: s.name,
+  url: s.url,
+  description: s.description,
+  provider: { '@id': `${origin}/#org` },
+  areaServed: 'US',
+}));
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Do I even need AI — and where do I start?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Coyote & Quill starts with a fixed-fee Capabilities-Based Assessment (CBA) that answers honestly whether AI is the right tool for the problem in front of you. If it is, the DOTMLPF-P Readiness Assessment tells you whether you are ready and exactly what to build — then we build it.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do I build something real — fast, without hiring developers?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The five-day Vibe Coding Engagement has your team ship a real, deployed internal tool with AI in the room, and installs SMEAC — a briefing doctrine that lets technical and non-technical people direct AI to production-quality work after the engagement ends.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'I need a tool built to last — and it has to survive compliance.',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Custom App Development builds web-based, AI-augmented applications with React, Next.js, and Supabase — HIPAA and FDA 21 CFR Part 11 compliant where it counts.',
+      },
+    },
+  ],
+};
 ---
 <BaseLayout
   title="Services — Coyote & Quill"
   description="The hardest part of AI isn't the technology — it's knowing where to start. AI implementation strategy, a 5-day vibe coding engagement, and custom app development."
+  jsonLd={[...serviceSchemas, faqSchema]}
 >
   <div class="page-hero">
     <div class="container">

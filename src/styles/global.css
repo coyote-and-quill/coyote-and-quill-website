@@ -8,9 +8,9 @@
 :root {
   --night-field:   #1B1F28;   /* Background — all pages */
   --ttecg-blue:    #1B3A6B;   /* Headings, borders, structure */
-  --slate-grey:    #4A6080;   /* Secondary text, dividers */
+  --slate-grey:    #7E93B5;   /* Secondary text — lightened for WCAG AA (4.86:1 on cards); was #4A6080 (2.57:1, failed). Border/divider rgba values are literal, unaffected. */
   --ice-blue:      #8AAAC8;   /* Primary body text on dark */
-  --coyote-orange: #C4621A;   /* Accent — use sparingly */
+  --coyote-orange: #D1742E;   /* Accent — use sparingly. Lightened from #C4621A for WCAG AA as text-on-dark (4.91:1). Buttons use dark text (white-on-orange can't pass). */
   --white:         #FFFFFF;
   --off-white:     #E8EDF2;
 
@@ -55,6 +55,45 @@ a:hover {
 img {
   max-width: 100%;
   display: block;
+}
+
+/* --- ACCESSIBILITY --- */
+/* Visible keyboard focus indicator for all interactive elements. */
+:focus-visible {
+  outline: 2px solid var(--ice-blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Skip-to-content link — hidden until focused by keyboard. */
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -56px;
+  z-index: 200;
+  background: var(--off-white);
+  color: var(--night-field);
+  padding: 10px 18px;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 16px;
+  color: var(--night-field);
+}
+
+/* Respect reduced-motion preference. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* --- TYPOGRAPHY --- */
@@ -377,12 +416,12 @@ section {
 
 .btn-primary {
   background: var(--coyote-orange);
-  color: var(--white);
+  color: var(--night-field);
 }
 
 .btn-primary:hover {
-  background: #d9721f;
-  color: var(--white);
+  background: #e0883f;
+  color: var(--night-field);
 }
 
 .btn-outline {
