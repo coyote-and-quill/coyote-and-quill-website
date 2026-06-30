@@ -10,7 +10,7 @@
   --ttecg-blue:    #1B3A6B;   /* Headings, borders, structure */
   --slate-grey:    #7E93B5;   /* Secondary text — lightened for WCAG AA (4.86:1 on cards); was #4A6080 (2.57:1, failed). Border/divider rgba values are literal, unaffected. */
   --ice-blue:      #8AAAC8;   /* Primary body text on dark */
-  --coyote-orange: #C4621A;   /* Accent — use sparingly */
+  --coyote-orange: #D1742E;   /* Accent — use sparingly. Lightened from #C4621A for WCAG AA as text-on-dark (4.91:1). Buttons use dark text (white-on-orange can't pass). */
   --white:         #FFFFFF;
   --off-white:     #E8EDF2;
 
@@ -377,12 +377,12 @@ section {
 
 .btn-primary {
   background: var(--coyote-orange);
-  color: var(--white);
+  color: var(--night-field);
 }
 
 .btn-primary:hover {
-  background: #d9721f;
-  color: var(--white);
+  background: #e0883f;
+  color: var(--night-field);
 }
 
 .btn-outline {
