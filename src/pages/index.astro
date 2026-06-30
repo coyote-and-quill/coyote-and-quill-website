@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout
   title="Coyote & Quill — Advisory · Strategy · Build"
-  description="Coyote & Quill delivers AI adoption strategy, vibe-coding workshops, and custom application development. Observe. Assess. Advise."
+  description="Coyote & Quill helps leaders answer the question every AI vendor skips — do you even need AI? — then builds what's worth building. Observe. Assess. Advise."
 >
   <section class="hero">
     <div class="container">
@@ -14,7 +14,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
         <h1>Precision strategy<br />for <em>consequential</em> problems.</h1>
         <p class="hero-tagline">
-          Coyote &amp; Quill delivers AI adoption strategy, vibe-coding workshops, and custom application development — with the discipline of a combat advisor and the craft of a practitioner.
+          Coyote &amp; Quill helps leaders answer the question every AI vendor skips — <em>do you even need this?</em> — then builds what's worth building. With the discipline of a combat advisor and the craft of a practitioner.
         </p>
         <div class="hero-motto" aria-label="Firm motto">
           <span>Observe</span>
@@ -39,27 +39,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container">
       <div class="section-header">
         <p class="label">What We Do</p>
-        <h2>Three service lines.<br />One mandate: outcomes.</h2>
+        <h2>Three questions every leader is asking.<br />We answer all three.</h2>
         <div class="divider"></div>
         <p>We don't sell subscriptions or generic frameworks. We take on a small number of engagements and go deep. Every engagement produces something the client keeps using after we leave.</p>
       </div>
       <div class="grid-3">
         <div class="card">
           <p class="card-number">01</p>
-          <h3>AI Adoption &amp; Integration</h3>
-          <p>Assess your actual capability state, identify where AI creates compounding value, build the integration architecture, and train the people who have to live with it.</p>
-          <a href="/services#ai-adoption">Learn more →</a>
+          <p class="card-question">"Do I even need AI — and where do I start?"</p>
+          <h3>AI Implementation Strategy</h3>
+          <p>We answer honestly — sometimes the answer is no — then build what's worth building.</p>
+          <a href="/services#implementation">Learn more →</a>
         </div>
         <div class="card">
           <p class="card-number">02</p>
-          <h3>Vibe Coding</h3>
-          <p>AI collapsed the distance between an idea and working software. We run hands-on workshops where your team builds a real, deployable tool with AI — in the room, on your stack.</p>
+          <p class="card-question">"How do I build something real — fast, without hiring developers?"</p>
+          <h3>Vibe Coding Engagement</h3>
+          <p>Five days to a deployed tool your team built — and the doctrine to build the next one without us.</p>
           <a href="/services#vibe-coding">Learn more →</a>
         </div>
         <div class="card">
           <p class="card-number">03</p>
+          <p class="card-question">"I need a tool built to last — and it has to survive compliance."</p>
           <h3>Custom App Development</h3>
-          <p>Advice without implementation is just a memo. We build custom applications — web-based, AI-augmented, and built to last — that operationalize the strategies we recommend.</p>
+          <p>The tool that makes the strategy permanent. Built to survive production and the auditor.</p>
           <a href="/services#app-dev">Learn more →</a>
         </div>
       </div>
@@ -101,3 +104,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  /* Each card leads with the leader's question (the hook), then names the offering (the answer). */
+  .card-question {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.35;
+    color: var(--ice-blue);
+    margin-bottom: 10px;
+  }
+</style>
