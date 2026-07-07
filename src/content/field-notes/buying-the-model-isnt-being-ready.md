@@ -4,7 +4,7 @@ description: "Part of what we do at Coyote & Quill is track the frontier and tel
 pubDate: 2026-07-07
 draft: false
 tags: ["ai adoption", "readiness", "leadership", "best practices"]
-# linkedinUrl: ""  # not yet posted to LinkedIn
+linkedinUrl: "https://www.linkedin.com/posts/glenlewis05_the-president-of-openai-spent-an-30-minutes-share-7480363813142224896-Ire-/"
 ---
 
 Part of what Coyote & Quill is for: we watch the frontier so you don't have to, then tell you what actually matters.
