@@ -2,9 +2,9 @@
 title: "The Integration Was Me"
 description: "76% of small businesses use AI. 14% have built it into how they operate. I launched Coyote & Quill in that gap — after six months of getting integration wrong."
 pubDate: 2026-07-06
-draft: false  # visible for local preview. Flip to true for a safe git handoff, or keep false to publish via your PR.
+draft: false
 tags: ["vibe coding", "ai adoption", "integration", "leadership"]
-# linkedinUrl: ""  # TODO(Glen): paste the published 2026-07-06 LinkedIn post URL here to render the "Discuss on LinkedIn →" button, then uncomment.
+linkedinUrl: "https://www.linkedin.com/posts/glenlewis05_coyote-quill-advisory-strategy-build-activity-7479945046302236672-sz2J"
 ---
 
 76% of small businesses now use AI. 14% have actually built it into how they operate.
