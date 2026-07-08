@@ -17,10 +17,10 @@ const services = [
       'A five-day engagement where your team ships a real, deployed internal tool with AI and installs the SMEAC briefing doctrine to keep building.',
   },
   {
-    name: 'Custom App Development',
+    name: 'Standardize & Govern',
     url: `${origin}/services#app-dev`,
     description:
-      'Custom web-based, AI-augmented applications built to survive production and compliance — HIPAA and FDA 21 CFR Part 11 where it counts.',
+      'The shared skills, harnesses, and doctrine that standardize how your whole team builds — turning a scatter of one-off tools into one governed capability, plus the compliance-critical custom builds you don\'t have the capacity for.',
   },
 ];
 
@@ -44,23 +44,23 @@ const faqSchema = {
       name: 'Do I even need AI — and where do I start?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Coyote & Quill starts with a fixed-fee Capabilities-Based Assessment (CBA) that answers honestly whether AI is the right tool for the problem in front of you. If it is, the DOTMLPF-P Readiness Assessment tells you whether you are ready and exactly what to build — then we build it.',
+        text: 'Coyote & Quill starts with a fixed-fee Capabilities-Based Assessment (CBA) that answers honestly whether AI is the right tool for the problem in front of you. If it is, the DOTMLPF-P Readiness Assessment tells you whether you are ready and exactly what to build — then we help your people build and own it.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How do I build something real — fast, without hiring developers?',
+      name: 'How do I empower those closest to the problem to fix it?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The five-day Vibe Coding Engagement has your team ship a real, deployed internal tool with AI in the room, and installs SMEAC — a briefing doctrine that lets technical and non-technical people direct AI to production-quality work after the engagement ends.',
+        text: 'The five-day Vibe Coding Engagement puts the people closest to the problem in the room with AI and has them ship a real, deployed internal tool — then installs SMEAC, a briefing doctrine that lets technical and non-technical people direct AI to production-quality work after the engagement ends.',
       },
     },
     {
       '@type': 'Question',
-      name: 'I need a tool built to last — and it has to survive compliance.',
+      name: 'How do I keep this from becoming a mess of one-off tools?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Custom App Development builds web-based, AI-augmented applications with React, Next.js, and Supabase — HIPAA and FDA 21 CFR Part 11 compliant where it counts.',
+        text: 'Standardize & Govern builds the shared skills, harnesses, and doctrine that make every AI tool your team ships consistent and governed — and when you lack the capacity to build a production- or compliance-grade system yourself, we build that too (React, Next.js, Supabase; HIPAA and FDA 21 CFR Part 11 where it counts).',
       },
     },
   ],
@@ -68,14 +68,14 @@ const faqSchema = {
 ---
 <BaseLayout
   title="Services — Coyote & Quill"
-  description="The hardest part of AI isn't the technology — it's knowing where to start. AI implementation strategy, a 5-day vibe coding engagement, and custom app development."
+  description="The hardest part of AI isn't the technology — it's knowing where to start. AI implementation strategy, a 5-day vibe coding engagement, and the skills and harnesses that standardize and govern it."
   jsonLd={[...serviceSchemas, faqSchema]}
 >
   <div class="page-hero">
     <div class="container">
       <p class="label">Services</p>
       <h1>The hardest part of AI isn't the technology.<br />It's knowing where to start.</h1>
-      <p>Most leaders are told AI will change everything — and handed no way to judge whether it changes anything for <em>their</em> business. Coyote &amp; Quill starts with the question every vendor skips: do you actually need AI for the problem in front of you? If the answer is no, we'll say so — that's the most valuable answer you can get. If it's yes, we tell you whether you're ready, exactly what to build, and then we build it.</p>
+      <p>Most leaders are told AI will change everything — and handed no way to judge whether it changes anything for <em>their</em> business. Coyote &amp; Quill starts with the question every vendor skips: do you actually need AI for the problem in front of you? If the answer is no, we'll say so — that's the most valuable answer you can get. If it's yes, we tell you whether you're ready and exactly what to build — then we teach your people to build and govern it themselves.</p>
     </div>
   </div>
 
@@ -88,7 +88,7 @@ const faqSchema = {
           <div class="divider"></div>
           <p class="service-question">"Do I even need AI — and where do I start?"</p>
           <p>You keep hearing AI is essential. No one can tell you whether that's true for <em>your</em> process — or where it would even fit. Buy the wrong tool and you've spent the budget proving a point you could have tested for a fraction of the cost.</p>
-          <p>We start with a <strong>Capabilities-Based Assessment (CBA)</strong> — a fast, fixed-fee diagnostic adapted from the military's own readiness model. It answers one question honestly: <em>is AI the right tool for this problem?</em> Sometimes it isn't — and knowing that before you spend is worth more than any deployment. If AI is the right call, the <strong>DOTMLPF-P Readiness Assessment</strong> tells you whether your organization is ready and exactly what to build. Not a score — a work order. Then we execute it: integration architecture, change management, and the training that makes it stick.</p>
+          <p>We start with a <strong>Capabilities-Based Assessment (CBA)</strong> — a fast, fixed-fee diagnostic adapted from the military's own readiness model. It answers one question honestly: <em>is AI the right tool for this problem?</em> Sometimes it isn't — and knowing that before you spend is worth more than any deployment. If AI is the right call, the <strong>DOTMLPF-P Readiness Assessment</strong> tells you whether your organization is ready and exactly what to build. Not a score — a work order. Then we execute it with you: integration architecture, change management, and the training that makes it stick — so your team carries it forward, not us.</p>
           <p class="service-note">The CBA is the cheapest, fastest way to find out you <em>don't</em> need to spend $75,000. We'd rather tell you that and earn the next engagement than sell you a deployment you'll regret.</p>
         </div>
         <div>
@@ -107,7 +107,7 @@ const faqSchema = {
             </div>
             <div class="stage">
               <p class="stage-name">Full AI Adoption &amp; Integration</p>
-              <p class="stage-q">"Build it, and make it stick."</p>
+              <p class="stage-q">"Build it together — and own it after we leave."</p>
               <p class="stage-price">$15,000 – $75,000</p>
             </div>
           </div>
@@ -125,7 +125,7 @@ const faqSchema = {
           <p class="label">Service 02</p>
           <h2>Vibe Coding Engagement</h2>
           <div class="divider"></div>
-          <p class="service-question">"How do I build something real — fast, without hiring developers?"</p>
+          <p class="service-question">"How do I empower those closest to the problem to fix it?"</p>
           <p>You have the ideas and the backlog. Building them means hiring developers or waiting months you don't have. AI collapsed that distance — and most teams haven't caught up to what that means.</p>
           <p>In <strong>five days</strong>, your team ships a real, deployed internal tool — and installs <strong>SMEAC</strong>, a briefing doctrine that lets technical and non-technical people direct AI to production-quality work long after we leave. Not a course. Not a sandbox demo. A tool they keep, and the discipline to build the next one.</p>
           <p class="service-note"><strong>The proof:</strong> Glen built TraceWell — a healthcare SaaS — this way, as a non-technical founder. The front-end developer he worked with was impressed enough to say so more than once — and to ask to sit down and understand how it was done.</p>
@@ -169,12 +169,12 @@ const faqSchema = {
       <div class="grid-2">
         <div>
           <p class="label">Service 03</p>
-          <h2>Custom App Development</h2>
+          <h2>Standardize &amp; Govern</h2>
           <div class="divider"></div>
-          <p class="service-question">"I need a tool built to last — and it has to survive compliance."</p>
-          <p>Off-the-shelf doesn't fit how you actually work. And advice without a built thing is just a memo that ends up in a drawer.</p>
-          <p>We build the application — web-based, AI-augmented, and built to survive production <em>and</em> the auditor. React, Next.js, Supabase; HIPAA and FDA 21 CFR Part 11 where it counts; AI workflow integration that holds up under real load.</p>
-          <p class="service-note"><strong>The proof:</strong> TraceWell and Fathom — the firm's own products — are the demonstration.</p>
+          <p class="service-question">"How do I keep this from becoming a mess of one-off tools?"</p>
+          <p>Empower a whole team to build and you get power — and, without a shared standard, sprawl: a hundred one-off tools no one can trust, secure, or maintain. Enthusiasm becomes risk.</p>
+          <p>We build the shared <strong>skills, harnesses, and doctrine</strong> that standardize how your whole team builds — so a scatter of one-off fixes becomes one consistent, governed capability. And when you need a production- or compliance-grade system your team shouldn't hand-build, we build that too: React, Next.js, Supabase; HIPAA and FDA 21 CFR Part 11 where it counts.</p>
+          <p class="service-note"><strong>The proof:</strong> TraceWell and Fathom — the firm's own products — are the demonstration that we build the hard ones to last.</p>
         </div>
         <div>
           <div class="card">
@@ -182,15 +182,15 @@ const faqSchema = {
             <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px;">
               <li style="display: flex; gap: 12px; align-items: flex-start;">
                 <span style="color: var(--coyote-orange); flex-shrink: 0; margin-top: 2px;">→</span>
-                <span>Web applications — React, Next.js, Supabase</span>
+                <span>Shared skills &amp; harnesses — the standard way your team builds</span>
               </li>
               <li style="display: flex; gap: 12px; align-items: flex-start;">
                 <span style="color: var(--coyote-orange); flex-shrink: 0; margin-top: 2px;">→</span>
-                <span>AI-augmented internal tools and dashboards</span>
+                <span>Doctrine and guardrails, encoded — governance that runs itself</span>
               </li>
               <li style="display: flex; gap: 12px; align-items: flex-start;">
                 <span style="color: var(--coyote-orange); flex-shrink: 0; margin-top: 2px;">→</span>
-                <span>Healthcare and compliance-aware applications — HIPAA, FDA 21 CFR Part 11</span>
+                <span>Compliance-grade custom builds — HIPAA, FDA 21 CFR Part 11</span>
               </li>
               <li style="display: flex; gap: 12px; align-items: flex-start;">
                 <span style="color: var(--coyote-orange); flex-shrink: 0; margin-top: 2px;">→</span>
