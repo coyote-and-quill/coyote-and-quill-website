@@ -1,0 +1,190 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SubscribeCTA from '../../components/SubscribeCTA.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const dispatches = await getCollection('dispatches', ({ data }) => !data.draft);
+  return dispatches.map((dispatch) => ({
+    params: { slug: dispatch.id },
+    props: { dispatch },
+  }));
+}
+
+const { dispatch } = Astro.props;
+const { Content } = await render(dispatch);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+
+const origin = (Astro.site ?? new URL('https://coyoteandquill.com')).origin;
+const dispatchUrl = `${origin}/dispatches/${dispatch.id}`;
+const blogPostingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: dispatch.data.title,
+  alternativeHeadline: dispatch.data.subtitle,
+  description: dispatch.data.description,
+  datePublished: dispatch.data.pubDate.toISOString(),
+  url: dispatchUrl,
+  mainEntityOfPage: dispatchUrl,
+  image: `${origin}/og-default.png`,
+  inLanguage: 'en-US',
+  author: { '@id': `${origin}/#glen` },
+  publisher: { '@id': `${origin}/#org` },
+};
+---
+<BaseLayout
+  title={`${dispatch.data.title} — Coyote & Quill`}
+  description={dispatch.data.description}
+  ogType="article"
+  jsonLd={blogPostingSchema}
+>
+  <article class="dispatch">
+    <header class="dispatch-header">
+      <p class="label">Dispatch</p>
+      <h1>{dispatch.data.title}</h1>
+      <p class="dispatch-subtitle">{dispatch.data.subtitle}</p>
+      <p class="dispatch-meta">{formatDate(dispatch.data.pubDate)}</p>
+    </header>
+
+    <div class="dispatch-body">
+      <Content />
+    </div>
+
+    {(dispatch.data.substackUrl || dispatch.data.linkedinUrl) && (
+      <div class="dispatch-footer">
+        {dispatch.data.substackUrl && (
+          <a href={dispatch.data.substackUrl} class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+            Read on Substack →
+          </a>
+        )}
+        {dispatch.data.linkedinUrl && (
+          <a href={dispatch.data.linkedinUrl} class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+            Discuss on LinkedIn →
+          </a>
+        )}
+      </div>
+    )}
+
+    <SubscribeCTA />
+
+    <div class="dispatch-back">
+      <a href="/dispatches">← All Dispatches</a>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .dispatch {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+  .dispatch-header {
+    margin-bottom: 48px;
+  }
+  .dispatch-header h1 {
+    margin: 16px 0 12px;
+  }
+  .dispatch-subtitle {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    color: var(--ice-blue);
+    margin-bottom: 16px;
+  }
+  .dispatch-meta {
+    font-size: 0.85rem;
+    color: var(--slate-grey);
+  }
+  .dispatch-body :global(h2),
+  .dispatch-body :global(h3),
+  .dispatch-body :global(h4) {
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+  }
+  .dispatch-body :global(p) {
+    margin-bottom: 1.25em;
+    line-height: 1.75;
+  }
+  .dispatch-body :global(ul),
+  .dispatch-body :global(ol) {
+    margin: 1em 0 1.5em 1.5em;
+    color: var(--ice-blue);
+  }
+  .dispatch-body :global(li) {
+    margin-bottom: 0.5em;
+  }
+  .dispatch-body :global(blockquote) {
+    border-left: 3px solid var(--coyote-orange);
+    background: rgba(27, 58, 107, 0.15);
+    padding: 16px 20px;
+    margin: 1.5em 0;
+    font-style: italic;
+    color: var(--off-white);
+    border-radius: 0 4px 4px 0;
+  }
+  .dispatch-body :global(blockquote p:last-child) {
+    margin-bottom: 0;
+  }
+  .dispatch-body :global(a) {
+    color: var(--coyote-orange);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .dispatch-body :global(a:hover) {
+    color: var(--off-white);
+  }
+  .dispatch-body :global(code) {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(74, 96, 128, 0.3);
+    padding: 2px 6px;
+    border-radius: 2px;
+    font-size: 0.9em;
+  }
+  .dispatch-body :global(pre) {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(74, 96, 128, 0.3);
+    padding: 20px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 1.5em 0;
+  }
+  .dispatch-body :global(pre code) {
+    background: none;
+    border: none;
+    padding: 0;
+  }
+  .dispatch-body :global(hr) {
+    border: none;
+    border-top: 1px solid rgba(74, 96, 128, 0.3);
+    margin: 2.5em 0;
+  }
+  .dispatch-body :global(strong) {
+    color: var(--off-white);
+    font-weight: 600;
+  }
+  .dispatch-footer {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(74, 96, 128, 0.2);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .dispatch-back {
+    margin-top: 32px;
+    text-align: center;
+  }
+  .dispatch-back a {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--slate-grey);
+  }
+  .dispatch-back a:hover {
+    color: var(--coyote-orange);
+  }
+</style>
