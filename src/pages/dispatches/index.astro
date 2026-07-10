@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SubscribeCTA from '../../components/SubscribeCTA.astro';
+import { getCollection } from 'astro:content';
+
+const dispatches = (await getCollection('dispatches', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+---
+<BaseLayout
+  title="Dispatches — Coyote & Quill"
+  description="Long-form issues from the field. Coyote & Quill on running AI like a readiness problem, not a magic button."
+>
+  <div class="page-hero">
+    <div class="container">
+      <p class="label">Dispatches</p>
+      <h1>Long-form from<br />the field.</h1>
+      <p>Considered pieces, roughly twice a month. Where Field Notes are the observation, Dispatches are the argument worked all the way through.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      {dispatches.length === 0 ? (
+        <div class="placeholder-section">
+          <p class="label" style="margin-bottom: 12px;">Coming Soon</p>
+          <p>The first Dispatch posts soon.</p>
+        </div>
+      ) : (
+        <ul class="dispatch-list">
+          {dispatches.map((dispatch) => (
+            <li class="dispatch-item">
+              <a href={`/dispatches/${dispatch.id}`}>
+                <p class="dispatch-date">{formatDate(dispatch.data.pubDate)}</p>
+                <h2>{dispatch.data.title}</h2>
+                <p class="dispatch-subtitle">{dispatch.data.subtitle}</p>
+                <span class="dispatch-cta">Read →</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <SubscribeCTA />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .dispatch-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+  }
+  .dispatch-item {
+    border-bottom: 1px solid rgba(74, 96, 128, 0.2);
+  }
+  .dispatch-item:first-child {
+    border-top: 1px solid rgba(74, 96, 128, 0.2);
+  }
+  .dispatch-item a {
+    display: block;
+    padding: 32px 0;
+    text-decoration: none;
+    transition: padding-left 0.2s ease;
+  }
+  .dispatch-item a:hover {
+    padding-left: 12px;
+  }
+  .dispatch-date {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--coyote-orange);
+    margin-bottom: 12px;
+  }
+  .dispatch-item h2 {
+    font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+    margin-bottom: 8px;
+    transition: color 0.2s ease;
+  }
+  .dispatch-item a:hover h2 {
+    color: var(--coyote-orange);
+  }
+  .dispatch-subtitle {
+    color: var(--ice-blue);
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+  .dispatch-cta {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate-grey);
+  }
+</style>
