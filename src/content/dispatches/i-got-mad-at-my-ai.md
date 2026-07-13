@@ -3,7 +3,7 @@ title: "I Got Mad at My AI. The Failure Was Mine."
 subtitle: "An AI does the work. It's blind at both ends — and those two blind spots are the one thing you can't hand it."
 description: "For six months I got mad at my AI for missing. The failure was mine. An AI is blind at both ends — and those two blind spots are the one thing you can't hand it."
 pubDate: 2026-07-13
-draft: true
+draft: false
 tags: ["AI adoption", "readiness", "governance"]
 # substackUrl: ""   # add once cross-posted to Substack (renders a "Read on Substack →" link)
 ---
