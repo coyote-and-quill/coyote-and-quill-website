@@ -186,7 +186,9 @@ Staging on Vercel preview URLs is fine before all gates are met.
 
 - **Content:** Two content collections in `src/content.config.ts` — **Field Notes** (`src/content/field-notes/`, short/from-the-bench, weekly) and **Dispatches** (`src/content/dispatches/`, long-form issues ~2×/mo, adds required `subtitle` + optional `substackUrl`). Pages are hand-authored `.astro`. Site is canonical for all written content; LinkedIn/Substack get a hook + link. Substack subscribe URL lives in `src/consts.ts` (`SUBSTACK_URL`) and gates the subscribe CTA — empty = hidden.
 - **Web assets** live in `public/` and **deploy publicly** — keep this folder lean (optimized SVG/PNG/ICO/OG-image only). **Source/vector files (`.ai`, `.eps`, print renders, 3D mockups) must NOT live in `public/`** — keep them in a non-served `brand/` dir (or outside the repo). The light-blue seal is the canonical brand mark; favicon + OG card derive from the square PROFILE PIC asset.
-- **Analytics:** Vercel Web Analytics only (cookie-free, no consent banner) — the one approved third-party script.
+- **Third-party scripts:** adding one to a public site is a consent and privacy decision, not a
+  build decision — Glen's call, recorded as a `decision`. What is installed today lives in
+  `note:website-third-party-scripts` in the CCL store, not here.
 
 ## Do NOT
 
