@@ -34,7 +34,7 @@ gitleaks detect --source . --no-banner --redact
 
 ## Required checks on `main`
 
-`build` and `gitleaks`, from `.github/workflows/ci.yml`. A PR cannot merge red. Don't weaken, skip or rename a check to get green. Fix the cause or stop and ask. `kit-check` runs too, but it isn't required.
+`build` and `gitleaks`, from `.github/workflows/ci.yml`. A PR cannot merge red. Don't weaken, skip or rename a check to get green. Fix the cause or stop and ask. There's no `kit-check` job: this repo is public, and GitHub doesn't let a public repo call the private skills repo's workflow. The weekly kit sweep checks it instead.
 
 ## Git workflow
 
