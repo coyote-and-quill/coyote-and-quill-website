@@ -1,0 +1,4 @@
+This repo governs its own rules: AGENTS.md and CLAUDE.md are written, approved and enforced here,
+under the C&Q agentic SDLC kit. C&Q's internal rule inventory skips any tree holding this file, so it
+doesn't ask for a second ruling on each of this repo's rules. Only the file's name is read.
+Added 29 Oct 2026, after the website came onto the kit.
