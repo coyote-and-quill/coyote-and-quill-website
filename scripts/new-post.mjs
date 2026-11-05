@@ -39,7 +39,6 @@ description: ""
 pubDate: ${today}
 draft: true
 tags: []
-# linkedinUrl: ""
 ---
 
 `;

@@ -4,7 +4,6 @@ description: "Jev scored 44% on my work items. Twenty of its 27 misses were the 
 pubDate: 2026-10-22
 draft: false
 tags: ["ai adoption", "data quality", "governance"]
-# linkedinUrl: "" # TODO — add the plain LinkedIn post URL to render the "Discuss on LinkedIn" button
 ---
 
 Jev can't write a sentence. It answers yes or no, picks one option from a list, or gives a rating, each with a probability of how sure it is. That's the whole capability.

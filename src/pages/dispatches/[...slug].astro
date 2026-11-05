@@ -52,18 +52,11 @@ const blogPostingSchema = {
       <Content />
     </div>
 
-    {(dispatch.data.substackUrl || dispatch.data.linkedinUrl) && (
+    {dispatch.data.substackUrl && (
       <div class="dispatch-footer">
-        {dispatch.data.substackUrl && (
-          <a href={dispatch.data.substackUrl} class="btn btn-outline" target="_blank" rel="noopener noreferrer">
-            Read on Substack →
-          </a>
-        )}
-        {dispatch.data.linkedinUrl && (
-          <a href={dispatch.data.linkedinUrl} class="btn btn-outline" target="_blank" rel="noopener noreferrer">
-            Discuss on LinkedIn →
-          </a>
-        )}
+        <a href={dispatch.data.substackUrl} class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+          Read on Substack →
+        </a>
       </div>
     )}
 

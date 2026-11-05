@@ -4,7 +4,6 @@ description: "Let your people build with AI and the rules seem to loosen. Done r
 pubDate: 2026-07-17
 draft: false
 tags: ["vibe coding", "governance", "readiness", "leadership"]
-# linkedinUrl: "" # TODO — add the plain LinkedIn post URL to render the "Discuss on LinkedIn" button
 ---
 
 The moment you let your people build with AI, the fear kicks in: the rules go out the window. Compliance, sign-off, the way things have to be done here — all of it loosens the second a non-expert can build their own tool.

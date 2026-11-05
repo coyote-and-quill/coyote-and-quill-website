@@ -4,7 +4,6 @@ description: "76% of small businesses use AI. 14% have built it into how they op
 pubDate: 2026-07-06
 draft: false
 tags: ["vibe coding", "ai adoption", "integration", "leadership"]
-linkedinUrl: "https://www.linkedin.com/posts/glenlewis05_coyote-quill-advisory-strategy-build-activity-7479945046302236672-sz2J"
 ---
 
 76% of small businesses now use AI. 14% have actually built it into how they operate.

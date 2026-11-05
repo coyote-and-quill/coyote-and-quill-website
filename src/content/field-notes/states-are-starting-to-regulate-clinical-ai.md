@@ -4,7 +4,6 @@ description: "California's clinical-AI laws take effect 1 January 2027, and Texa
 pubDate: 2026-11-05
 draft: false
 tags: ["healthcare ai", "ai governance", "compliance", "regulation"]
-# linkedinUrl: "" # TODO — add the plain LinkedIn post URL to render the "Discuss on LinkedIn" button
 ---
 
 On 1 January 2027, California's new rules for clinical AI take effect. Texas already has rules of its own. More states will follow.

@@ -4,7 +4,6 @@ description: "Half your team already uses AI at work — and most of them hide i
 pubDate: 2026-07-15
 draft: false
 tags: ["ai adoption", "shadow ai", "readiness", "governance", "leadership"]
-# linkedinUrl: "" # TODO — add the plain LinkedIn post URL to render the "Discuss on LinkedIn" button
 ---
 
 Half your team is already using AI to do their jobs. Most of them haven't told you. They didn't wait for permission — they went to the closet. That's not a discipline problem. It's the gap, and it's costing you twice.

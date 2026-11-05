@@ -4,7 +4,6 @@ description: "A model's published numbers tell you what it does. Only your own d
 pubDate: 2026-10-20
 draft: false
 tags: ["ai adoption", "model selection", "readiness"]
-# linkedinUrl: "" # TODO — add the plain LinkedIn post URL to render the "Discuss on LinkedIn" button
 ---
 
 In mid-September a new AI model launched that can't write a sentence.

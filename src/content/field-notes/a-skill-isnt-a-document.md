@@ -4,7 +4,6 @@ description: "Researchers catalogued how developers configure their AI coding ag
 pubDate: 2026-06-29
 draft: false
 tags: ["vibe coding", "ai-assisted development", "skills"]
-# linkedinUrl: ""
 ---
 
 Researchers recently catalogued how developers actually configure their AI coding agents — eight mechanisms across 2,853 open-source repositories.¹ The headline finding is a quiet indictment: most people configure almost nothing. One context file, and that's it.
