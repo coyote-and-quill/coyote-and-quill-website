@@ -4,7 +4,6 @@ description: "AI fills in blanks you didn't know existed. The real skill in vibe
 pubDate: 2026-06-24
 draft: false
 tags: ["vibe coding", "ai-assisted development", "requirements"]
-# linkedinUrl: ""
 ---
 
 There is a gap between what the AI app-building ads promise and what actually happens when you sit down to build something real.

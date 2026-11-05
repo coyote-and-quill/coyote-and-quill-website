@@ -49,14 +49,6 @@ const blogPostingSchema = {
       <Content />
     </div>
 
-    {post.data.linkedinUrl && (
-      <div class="field-note-footer">
-        <a href={post.data.linkedinUrl} class="btn btn-outline" target="_blank" rel="noopener noreferrer">
-          Discuss on LinkedIn →
-        </a>
-      </div>
-    )}
-
     <div class="field-note-back">
       <a href="/field-notes">← All Field Notes</a>
     </div>
@@ -145,11 +137,6 @@ const blogPostingSchema = {
   .field-note-body :global(strong) {
     color: var(--off-white);
     font-weight: 600;
-  }
-  .field-note-footer {
-    margin-top: 64px;
-    padding-top: 32px;
-    border-top: 1px solid rgba(74, 96, 128, 0.2);
   }
   .field-note-back {
     margin-top: 32px;

@@ -4,7 +4,6 @@ description: "A site tested for ten users crashed under fifteen thousand. Everyo
 pubDate: 2026-06-26
 draft: false
 tags: ["vibe coding", "leadership", "requirements"]
-# linkedinUrl: ""
 ---
 
 The site handled ten users in testing. Fifteen thousand showed up on Black Friday. It crashed.

@@ -9,7 +9,6 @@ const fieldNotes = defineCollection({
     pubDate: z.coerce.date(),
     draft: z.boolean().default(false),
     tags: z.array(z.string()).default([]),
-    linkedinUrl: z.string().url().optional(),
   }),
 });
 
@@ -22,7 +21,6 @@ const dispatches = defineCollection({
     pubDate: z.coerce.date(),
     draft: z.boolean().default(false),
     tags: z.array(z.string()).default([]),
-    linkedinUrl: z.string().url().optional(),
     substackUrl: z.string().url().optional(),
   }),
 });

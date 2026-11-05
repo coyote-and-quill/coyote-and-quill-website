@@ -56,9 +56,10 @@ The site has a content collection at `src/content/field-notes/` rendered to `/fi
 
 1. `pnpm new-post "Title of the post"` — scaffolds a markdown file with today's date, slugified filename, and `draft: true`.
 2. Write the post in the new file. Set `draft: false` when ready.
-3. Optional: add `linkedinUrl` to frontmatter once the LinkedIn version is published — renders a "Discuss on LinkedIn →" CTA at the bottom of the post.
-4. `git commit && git push` → Vercel auto-deploys → live at `/field-notes/<slug>`.
-5. Post a teaser + link to the live URL on LinkedIn.
+3. `git commit && git push` → Vercel auto-deploys → live at `/field-notes/<slug>`.
+4. Post a teaser + link to the live URL on LinkedIn.
+
+**Readers go from LinkedIn to the site, never back** (Glen, 5 Nov 2026). Posts carry no link to LinkedIn: the "Discuss on LinkedIn" button and the `linkedinUrl` field were removed in #61.
 
 **Site is canonical.** The full piece lives here; LinkedIn gets the hook + link. This protects SEO and drives traffic to the website (the goal).
 
@@ -70,7 +71,6 @@ description: "..."     # required — used for listing preview + meta descriptio
 pubDate: 2026-05-06    # required — drives sort order
 draft: false           # default false; true hides from listing + routes
 tags: []               # optional
-linkedinUrl: "..."     # optional — renders "Discuss on LinkedIn" link
 ```
 
 ### Where the post styling lives

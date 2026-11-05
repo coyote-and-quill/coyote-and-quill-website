@@ -4,7 +4,6 @@ description: "Framing an AI agent as an 'employee' made managers catch 18% fewer
 pubDate: 2026-07-08
 draft: false
 tags: ["ai adoption", "leadership", "ai governance", "human in the loop"]
-# linkedinUrl: ""  # 7/8 LinkedIn post going up link-free; add note→post backlink once it's live
 ---
 
 I've spent months telling you to manage your AI like a junior employee. Plan for it, supervise it, onboard it. I stand by every word.
